@@ -3,7 +3,7 @@ import app from "./app";
 
 const port: number = 2000;
 
-async function main() {
+export async function main() {
   const uri: any = process.env.DB_URL || "mongodb://localhost:27017/firstdb";
   try {
     (await mongoose.connect(uri)) as any;
