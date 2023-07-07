@@ -1,5 +1,6 @@
 {
     "version": 2,
+     "name": "cows-admin",
     "builds": [
       {
         "src": "dist/server.js",
@@ -12,6 +13,5 @@
         "dest": "dist/server.js"
       }
       
-    ],
-    "rewrites": [{ "source": "/(.*)", "destination": "/" }] 
+    ]
   }
