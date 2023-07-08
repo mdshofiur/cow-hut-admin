@@ -17,13 +17,11 @@ app.use(express.json());
 app.use(errorHandlerMiddleware);
 app.use(cookieParser());
 
-app.use(userRouter);
-app.use(cowRouters);
-app.use(ordersRouters);
-app.use(adminRouter);
+// app.use(userRouter);
+// app.use(cowRouters);
+// app.use(ordersRouters);
+// app.use(adminRouter);
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.send("Hello World!");
-});
+
 
 export default app;
