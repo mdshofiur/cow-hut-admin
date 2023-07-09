@@ -1,7 +1,7 @@
 # cow-hut
 
 
-## Live Link: https://example.com
+## Live Link: https://cow-hut-admin-two.vercel.app
 
 # Application Routes:
 
