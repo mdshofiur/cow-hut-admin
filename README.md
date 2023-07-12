@@ -16,22 +16,31 @@
 
 ## User
 * Route:  https://cow-hut-admin-two.vercel.app/api/v1/users (GET) Include an id that is saved in your database
-* Route:  https://cow-hut-admin-two.vercel.app/api/v1/users/6177a5b87d32123f08d2f5d4 (Single GET) Include an id that is saved in your database
-* Route:  https://cow-hut-admin-two.vercel.app/api/v1/users/6177a5b87d32123f08d2f5d4 (PATCH) Include an id that is saved in your database
-* Route:  https://cow-hut-admin-two.vercel.app/api/v1/users/6177a5b87d32123f08d2f5d4 (DELETE) Include an id that is saved in your database
+* Route:  https://cow-hut-admin-two.vercel.app/api/v1/users/64a74f763be5df417c061116 (Single GET) Include an id that is saved in your database
+* Route:  https://cow-hut-admin-two.vercel.app/api/v1/users/64a74f763be5df417c061116 (PATCH) Include an id that is saved in your database
+* Route:  https://cow-hut-admin-two.vercel.app/api/v1/users/64a74f763be5df417c061116 (DELETE) Include an id that is saved in your database
 
 
 ## Cows
 * Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows (POST)
 * Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows (GET)
-* Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows/6177a5b87d32123f08d2f5d4 (Single GET) Include an id that is saved in your database
-* Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows/6177a5b87d32123f08d2f5d4 (PATCH) Include an id that is saved in your database
-* Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows/6177a5b87d32123f08d2f5d4 (DELETE) Include an id that is saved in your database
+* Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows/64a753223be5df417c061128 (Single GET) Include an id that is saved in your database
+* Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows/64a753223be5df417c061128 (PATCH) Include an id that is saved in your database
+* Route:  https://cow-hut-admin-two.vercel.app/api/v1/cows/64a753223be5df417c061128 (DELETE) Include an id that is saved in your database
 
 ## Orders
 
 * Route:  https://cow-hut-admin-two.vercel.app/api/v1/orders (POST)
 * Route:  https://cow-hut-admin-two.vercel.app/api/v1/orders (GET)
+
+##  /api/v1/orders (POST) Body
+
+```
+{
+  "cow":"64a753223be5df417c061128", 
+  "buyer":"64a74f763be5df417c061116"
+}
+```
 
 ## Bonus Part
 
