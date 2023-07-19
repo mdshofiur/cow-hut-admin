@@ -10,3 +10,4 @@ const orderSchema = new mongoose_1.default.Schema({
     buyer: { type: mongoose_1.default.Schema.Types.ObjectId, required: true },
 });
 exports.OrderModel = mongoose_1.default.model("Order", orderSchema);
+//# sourceMappingURL=orders.model.js.map

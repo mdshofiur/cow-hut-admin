@@ -11,3 +11,4 @@ const ordersRouters = express_1.default.Router();
 ordersRouters.post("/api/v1/orders", auth_middleware_1.buyerMiddleware, order_controller_1.createOrder);
 ordersRouters.get("/api/v1/orders", order_controller_1.getOrders);
 exports.default = ordersRouters;
+//# sourceMappingURL=order.route.js.map

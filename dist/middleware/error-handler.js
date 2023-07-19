@@ -36,3 +36,4 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     });
 };
 exports.errorHandlerMiddleware = errorHandlerMiddleware;
+//# sourceMappingURL=error-handler.js.map

@@ -11,3 +11,4 @@ adminRouter.post("/api/v1/admins/create-admin", admin_controller_1.createAdmin);
 // Admin Login route
 adminRouter.post("/api/v1/admins/login", admin_controller_1.adminLogin);
 exports.default = adminRouter;
+//# sourceMappingURL=admin.route.js.map

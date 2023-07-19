@@ -1,22 +1,13 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCow = exports.updateCow = exports.getSingleCow = exports.getAllCows = exports.createCow = void 0;
 const cow_service_1 = require("./cow.service");
 /* -------------------------------------------------------------------------- */
 /*                                Create a cow                                */
 /* -------------------------------------------------------------------------- */
-const createCow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createCow = async (req, res) => {
     try {
-        const cow = yield (0, cow_service_1.createCowService)(req.body);
+        const cow = await (0, cow_service_1.createCowService)(req.body);
         res.status(200).json({
             success: true,
             statusCode: 200,
@@ -32,12 +23,12 @@ const createCow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             error: error.message,
         });
     }
-});
+};
 exports.createCow = createCow;
 /* -------------------------------------------------------------------------- */
 /*                                Get all cows                                */
 /* -------------------------------------------------------------------------- */
-const getAllCows = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllCows = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
@@ -56,7 +47,7 @@ const getAllCows = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 { category: { $regex: new RegExp(searchTerm, "i") } },
             ],
         };
-        const { cows, totalPages } = yield (0, cow_service_1.getAllCowsService)(query, sortBy, sortOrder, page, limit);
+        const { cows, totalPages } = await (0, cow_service_1.getAllCowsService)(query, sortBy, sortOrder, page, limit);
         res.status(200).json({
             success: true,
             statusCode: 200,
@@ -77,15 +68,15 @@ const getAllCows = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             error: error.message,
         });
     }
-});
+};
 exports.getAllCows = getAllCows;
 /* -------------------------------------------------------------------------- */
 /*                               Get single cow                               */
 /* -------------------------------------------------------------------------- */
-const getSingleCow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getSingleCow = async (req, res) => {
     const { id } = req.params;
     try {
-        const cow = yield (0, cow_service_1.getSingleCowService)(id);
+        const cow = await (0, cow_service_1.getSingleCowService)(id);
         res.status(200).json({
             success: true,
             statusCode: 200,
@@ -101,15 +92,15 @@ const getSingleCow = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             error: error.message,
         });
     }
-});
+};
 exports.getSingleCow = getSingleCow;
 /* -------------------------------------------------------------------------- */
 /*                               Update a cow                                 */
 /* -------------------------------------------------------------------------- */
-const updateCow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const updateCow = async (req, res) => {
     const { id } = req.params;
     try {
-        const updatedCow = yield (0, cow_service_1.updateCowService)(id, req.body);
+        const updatedCow = await (0, cow_service_1.updateCowService)(id, req.body);
         res.status(200).json({
             success: true,
             statusCode: 200,
@@ -125,15 +116,15 @@ const updateCow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             error: error.message,
         });
     }
-});
+};
 exports.updateCow = updateCow;
 /* -------------------------------------------------------------------------- */
 /*                               Delete a cow                                 */
 /* -------------------------------------------------------------------------- */
-const deleteCow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteCow = async (req, res) => {
     const { id } = req.params;
     try {
-        const deletedCow = yield (0, cow_service_1.deleteCowService)(id);
+        const deletedCow = await (0, cow_service_1.deleteCowService)(id);
         res.status(200).json({
             success: true,
             statusCode: 200,
@@ -149,8 +140,9 @@ const deleteCow = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             error: error.message,
         });
     }
-});
+};
 exports.deleteCow = deleteCow;
 /* -------------------------------------------------------------------------- */
 /*                               Create a order                               */
 /* -------------------------------------------------------------------------- */
+//# sourceMappingURL=cow.controller.js.map

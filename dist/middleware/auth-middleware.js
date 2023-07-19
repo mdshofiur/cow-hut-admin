@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -27,7 +18,7 @@ const verifyToken = (token) => {
 };
 exports.verifyToken = verifyToken;
 // Admin middleware
-const adminMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const adminMiddleware = async (req, res, next) => {
     const accessToken = req.cookies.accessToken;
     if (!accessToken) {
         return res.status(401).json({
@@ -37,7 +28,7 @@ const adminMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         });
     }
     try {
-        const decoded = yield (0, exports.verifyToken)(accessToken);
+        const decoded = await (0, exports.verifyToken)(accessToken);
         if (decoded.role !== "admin") {
             return res.status(401).json({
                 success: false,
@@ -54,10 +45,10 @@ const adminMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
             message: "Invalid access token",
         });
     }
-});
+};
 exports.adminMiddleware = adminMiddleware;
 // Seller middleware
-const sellerMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const sellerMiddleware = async (req, res, next) => {
     const accessToken = req.cookies.accessToken;
     if (!accessToken) {
         return res.status(401).json({
@@ -67,7 +58,7 @@ const sellerMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         });
     }
     try {
-        const decoded = yield (0, exports.verifyToken)(accessToken);
+        const decoded = await (0, exports.verifyToken)(accessToken);
         if (decoded.role !== "seller") {
             return res.status(401).json({
                 success: false,
@@ -84,10 +75,10 @@ const sellerMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, f
             message: "Invalid access token",
         });
     }
-});
+};
 exports.sellerMiddleware = sellerMiddleware;
 // Buyer middleware
-const buyerMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const buyerMiddleware = async (req, res, next) => {
     const accessToken = req.cookies.accessToken;
     if (!accessToken) {
         return res.status(401).json({
@@ -97,7 +88,7 @@ const buyerMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         });
     }
     try {
-        const decoded = yield (0, exports.verifyToken)(accessToken);
+        const decoded = await (0, exports.verifyToken)(accessToken);
         if (decoded.role !== "buyer") {
             return res.status(401).json({
                 success: false,
@@ -114,10 +105,10 @@ const buyerMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
             message: "Invalid access token",
         });
     }
-});
+};
 exports.buyerMiddleware = buyerMiddleware;
 // Admin , Seller and Buyer middleware
-const adminSellerBuyerMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const adminSellerBuyerMiddleware = async (req, res, next) => {
     const accessToken = req.cookies.accessToken;
     if (!accessToken) {
         return res.status(401).json({
@@ -127,7 +118,7 @@ const adminSellerBuyerMiddleware = (req, res, next) => __awaiter(void 0, void 0,
         });
     }
     try {
-        const decoded = (yield (0, exports.verifyToken)(accessToken));
+        const decoded = (await (0, exports.verifyToken)(accessToken));
         const { role } = decoded;
         // Check if the user is a buyer, seller, or admin
         if (role !== "buyer" && role !== "seller" && role !== "admin") {
@@ -146,10 +137,10 @@ const adminSellerBuyerMiddleware = (req, res, next) => __awaiter(void 0, void 0,
             message: "Invalid access token",
         });
     }
-});
+};
 exports.adminSellerBuyerMiddleware = adminSellerBuyerMiddleware;
 // Orders middleware
-const ordersMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const ordersMiddleware = async (req, res, next) => {
     const accessToken = req.cookies.accessToken;
     if (!accessToken) {
         return res.status(401).json({
@@ -159,7 +150,7 @@ const ordersMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         });
     }
     try {
-        const decoded = (yield (0, exports.verifyToken)(accessToken));
+        const decoded = (await (0, exports.verifyToken)(accessToken));
         const { _id, role } = decoded;
         // Check if the user is an admin
         if (role === "admin") {
@@ -195,5 +186,6 @@ const ordersMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, f
             message: "Invalid access token",
         });
     }
-});
+};
 exports.ordersMiddleware = ordersMiddleware;
+//# sourceMappingURL=auth-middleware.js.map

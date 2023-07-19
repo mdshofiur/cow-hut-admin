@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,7 +8,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const cow_model_1 = require("../cow/cow.model");
 const user_model_1 = require("../user/user.model");
 const orders_model_1 = require("./orders.model");
-const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createOrder = async (req, res) => {
     const { cow, buyer } = req.body;
     const extractObjectId = (value) => {
         const regex = /^ObjectId\((.+)\)$/;
@@ -27,8 +18,8 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     // const cowId = extractObjectId(cow);
     const buyerId = extractObjectId(buyer);
     try {
-        const buyerObj = yield user_model_1.UserModel.findById(new mongoose_1.default.Types.ObjectId(buyerId));
-        const cowObj = yield cow_model_1.CowModel.findById(new mongoose_1.default.Types.ObjectId(cow));
+        const buyerObj = await user_model_1.UserModel.findById(new mongoose_1.default.Types.ObjectId(buyerId));
+        const cowObj = await cow_model_1.CowModel.findById(new mongoose_1.default.Types.ObjectId(cow));
         if (!buyerObj || !cowObj) {
             return res.status(404).json({
                 success: false,
@@ -41,20 +32,20 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 message: "Insufficient funds in the buyer's account",
             });
         }
-        const session = yield mongoose_1.default.startSession();
+        const session = await mongoose_1.default.startSession();
         session.startTransaction();
-        const updatedCow = yield cow_model_1.CowModel.findByIdAndUpdate(cow, { status: "sold out" }, { new: true });
+        const updatedCow = await cow_model_1.CowModel.findByIdAndUpdate(cow, { status: "sold out" }, { new: true });
         if (!updatedCow) {
             throw new Error("Error updating cow status");
         }
-        yield user_model_1.UserModel.findByIdAndUpdate(buyer, {
+        await user_model_1.UserModel.findByIdAndUpdate(buyer, {
             $inc: { budget: -cowObj.price },
         });
-        yield user_model_1.UserModel.findByIdAndUpdate(updatedCow.seller, {
+        await user_model_1.UserModel.findByIdAndUpdate(updatedCow.seller, {
             $inc: { income: cowObj.price },
         });
-        const newOrder = yield orders_model_1.OrderModel.create({ cow, buyer });
-        yield session.commitTransaction();
+        const newOrder = await orders_model_1.OrderModel.create({ cow, buyer });
+        await session.commitTransaction();
         session.endSession();
         return res.status(200).json({
             success: true,
@@ -71,11 +62,11 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             data: null,
         });
     }
-});
+};
 exports.createOrder = createOrder;
-const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getOrders = async (req, res) => {
     try {
-        const orders = yield orders_model_1.OrderModel.find().populate("cow").populate("buyer");
+        const orders = await orders_model_1.OrderModel.find().populate("cow").populate("buyer");
         return res.status(200).json({
             success: true,
             statusCode: 200,
@@ -91,5 +82,6 @@ const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             data: null,
         });
     }
-});
+};
 exports.getOrders = getOrders;
+//# sourceMappingURL=order.controller.js.map

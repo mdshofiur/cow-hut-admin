@@ -40,3 +40,4 @@ const adminSchema = new mongoose_1.Schema({
 });
 // Create the Admin model
 exports.AdminModel = mongoose_1.default.model("Admin", adminSchema);
+//# sourceMappingURL=admin.model.js.map

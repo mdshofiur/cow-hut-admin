@@ -42,3 +42,4 @@ const userSchema = new mongoose_1.Schema({
     updatedAt: { type: Date, default: Date.now },
 });
 exports.UserModel = mongoose_1.default.model("User", userSchema);
+//# sourceMappingURL=user.model.js.map

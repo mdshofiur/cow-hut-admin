@@ -18,3 +18,4 @@ cowRouters.put("/api/v1/cows/:id", auth_middleware_1.sellerMiddleware, cow_contr
 // Delete a cow by ID (only seller can delete)
 cowRouters.delete("/api/v1/cows/:id", auth_middleware_1.sellerMiddleware, cow_controller_1.deleteCow);
 exports.default = cowRouters;
+//# sourceMappingURL=cow.route.js.map

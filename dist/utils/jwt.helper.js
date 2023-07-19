@@ -21,3 +21,4 @@ function generateRefreshToken(user) {
     return refreshToken;
 }
 exports.generateRefreshToken = generateRefreshToken;
+//# sourceMappingURL=jwt.helper.js.map

@@ -24,3 +24,4 @@ userRouter.put("/api/v1/users/:id", auth_middleware_1.adminMiddleware, user_cont
 // Delete a user by ID
 userRouter.delete("/api/v1/users/:id", auth_middleware_1.adminMiddleware, user_controller_1.deleteUser);
 exports.default = userRouter;
+//# sourceMappingURL=user.route.js.map

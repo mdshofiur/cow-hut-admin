@@ -33,3 +33,4 @@ var CowCategory;
     CowCategory["Beef"] = "Beef";
     CowCategory["DualPurpose"] = "Dual Purpose";
 })(CowCategory || (exports.CowCategory = CowCategory = {}));
+//# sourceMappingURL=cow.interfaces.js.map

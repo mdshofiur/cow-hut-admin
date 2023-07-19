@@ -42,3 +42,4 @@ const cowSchema = new mongoose_1.Schema({
     seller: { type: mongoose_1.Schema.Types.ObjectId, ref: "User", required: true },
 });
 exports.CowModel = mongoose_1.default.model("Cow", cowSchema);
+//# sourceMappingURL=cow.model.js.map
