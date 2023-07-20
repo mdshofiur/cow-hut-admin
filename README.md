@@ -1,4 +1,4 @@
-# cow-hut
+# cow-hut-admin
 
 
 ## Live Link: https://cow-hut-admin-ruby.vercel.app
